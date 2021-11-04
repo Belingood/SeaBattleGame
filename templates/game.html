@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            See Battle Game
+        {% endblock %}
+    </title>
+</head>
+<body>
+{% extends "base.html" %}
+
+{% block app_content %}
+
+    <div id="gm-bl" class="forms-in-main" style="position: relative;">
+    <div style="display: table; margin: 0 auto;">
+        <div class="game-block">
+            <p>🪖 {{ name_frm }}</p>
+        <table align="center" border="0"  class="user-sea">
+            {% for i in range(10) %}
+                <tr>
+                    {% for j in range(10) %}
+
+                        {% if use_sea_game[i][j] == 1 %}
+                            <td style="background-color: green; width: 1.35rem; height: 1.35rem; border: solid 1px grey;"></td>
+                        {% elif use_sea_game[i][j] == 0 %}
+                            <td style="background-color: #fff; width: 1.35rem; height: 1.35rem; border: solid 1px grey;"></td>
+                        {% elif use_sea_game[i][j] == -4 %}
+                            <td style="background-color: grey; width: 1.35rem; height: 1.35rem; border: solid 1px grey;">💥</td>
+                        {% elif use_sea_game[i][j] == -5 %}
+                            <td style="background-color: #fff; width: 1.35rem; height: 1.35rem; border: solid 1px grey;">&bull;</td>
+
+                        {% endif %}
+
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+        </div>
+
+        <div class="game-block">
+            <img src="{{ url_for('static', filename='img/radar2.jpg') }}" />
+            <p><span>{{ texts['decks'][language] }}</span>
+                <br><span style="font-size:2rem;">{{ unbroken_use }} : {{ unbroken_rival }}</span>
+            </p>
+            <p style="color: #777;"><span>{{ texts['note'][language] }}<b style="color: orange;">{{ count_fire_use }}</b> &#8594;</span>
+                <br><span>&#8592; <b style="color: orange;">{{ count_fire_rival }}</b> {{ texts['shots'][language] }}</span>
+            </p>
+            {% for msg in get_flashed_messages() %}
+                <div style="background-color: {{ win_color }}; border: solid 2px black; margin-top: 1rem; line-height: 2rem; color: white;">
+                    <b>{{ msg }}</b>
+                </div>
+            <div><a href="{{ url_for('review') }}" style="margin-top: 1.5rem; display: block; text-decoration: none; color: blue;">
+                &raquo;&raquo;&raquo; {{ texts['review'][language] }} &laquo;&laquo;&laquo;
+            </a></div>
+            {% endfor %}
+        </div>
+
+        <div class="game-block">
+            <p>🤖 System</p>
+        <form action="" method="post">
+
+                <table align="center" border="0"  class="user-sea">
+                    {% for i in range(10) %}
+                        <tr>
+                            {% for j in range(10) %}
+                                {% if rival_sea_game[i][j] == 0 or (rival_sea_game[i][j] == 1 and button_display != 'none') %}
+                                    <td><input style="border-color: #fff;" type="checkbox" value="{{ i }}{{ j }}" name="rival_ships"></td>
+                                {% elif rival_sea_game[i][j] == 1 and button_display == 'none' %}
+                                    <td style="background-color: orange; width: 1.35rem; height: 1.35rem; border: solid 1px grey;"></td>
+                                {% elif rival_sea_game[i][j] == -4 %}
+                                    <td style="background-color: grey; width: 1.35rem; height: 1.35rem; border: solid 1px grey;">💥</td>
+                                {% elif rival_sea_game[i][j] == -5 %}
+                                    <td style="width: 1.35rem; height: 1.35rem; border: solid 1px grey;">&bull;</td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+                <br>
+
+            <p style="display: {{ button_display }}"><input style="font-size: 1.2rem; width: 15rem; height: 1.8rem;" type="submit" value="{{ texts['fire'][language] }} ({{ count_fire_use }})"></p>
+        </form>
+
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            See Battle Game
+        {% endblock %}
+    </title>
+</head>
+<body>
+{% extends "base.html" %}
+
+{% block app_content %}
+
+    <div class="forms-in-main">
+        <form action="" method="post">
+
+            <table align="center" style="text-align: left;">
+                <tr><td>{{ form.csrf_token }}</td></tr>
+            {% for field in form if field.name != "csrf_token" %}
+
+                    <tr>
+                        <td>
+                        {{ field.label() }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-bottom: 0.8rem;">
+                        {{ field }}
+                        {% for error in field.errors %}
+                            {{ error }}
+                        {% endfor %}
+                        </td>
+                    </tr>
+
+            {% endfor %}
+                <tr><td>
+                    <input style="font-size: 1.2rem; width: 10rem; height: 1.8rem; background: #FF7F50;" type="submit" value="GO">
+                </td></tr>
+            </table>
+
+
+        </form>
+    </div>
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            See Battle Game
+        {% endblock %}
+    </title>
+</head>
+<body>
+{% extends "base.html" %}
+
+{% block app_content %}
+
+    <div class="forms-in-main">
+         <span class="user-field">{{ texts['ships_rule'][language] }}
+             <br> <b>■ ■ ■ ■</b> - 1 {{ texts['pcs'][language] }}&emsp; <b>■ ■ ■</b> - 2 {{ texts['pcs'][language] }}&emsp;
+             <b>■ ■</b> - 3 {{ texts['pcs'][language] }}&emsp; <b>■</b> - 4 {{ texts['pcs'][language] }}</span>
+
+        {% for msg in get_flashed_messages() %}
+            <div style="background-color: red; margin-top: 1rem; line-height: 2rem; color: white;"><b>{{ msg }}</b></div>
+        {% endfor %}
+
+        <form action="" method="post">
+            <p>
+                <table align="center" border="0"  class="user-sea">
+                    {% for i in range(10) %}
+                        <tr>
+                            {% for j in range(10) %}
+
+                            {% if (i, j) in er %}
+                                {% set bc = '#8B008B' %}
+                            {% endif %}
+
+                            {% if i|string + j|string in c_ships %}
+                                {% set chk = 'checked' %}
+                            {% endif %}
+
+                                <td style="background-color:{{ bc }};"><input type="checkbox" value="{{ i }}{{ j }}" name="user_custom_ships" {{ chk }}></td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+                <br>
+            </p>
+            <p><input style="font-size: 1.2rem; width: 15rem; height: 1.8rem;" type="submit" value="{{ texts['game'][language] }}"></p>
+        </form>
+    </div>
+{% endblock %}
+
+</body>
+</html>
