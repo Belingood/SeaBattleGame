@@ -5,6 +5,8 @@
 ### Language: PYTHON
 ### Framework: FLASK
 
+[![Demo](/static/img/demo.jpg)](https://sea-battle-game-flask.herokuapp.com/)
+
 > ##### Introduction
 > Games are not what I would like to do. However, in this work, the logical part fascinated me most of all. The main task in the study of the Flask framework was the study of forms. In this project, both conventional forms and forms created using WTForms.
 
