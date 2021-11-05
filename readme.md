@@ -36,7 +36,7 @@ The number of undamaged ship decks remaining is also available from the informat
 > **B** - The number of shots you can fire on this turn.
 > ![SeaBattleGame](/static/img_readme/ab.jpg)
 
-Each new turn, both the player and the enemy are given a **random** number of shots in the range from **0 to 5**.
+Each new turn, both the player and the enemy are given a **random** number of shots in the range from **0 to 5**. You yourself choose where to shoot, the system shoots at randomly selected places, while it never shoots again at the same place.
 
 You need to mark the appropriate number of positions for firing at enemy ships. If you mark less than the number of shots dropped out, then fewer shots will be fired (as many as you marked). If you mark a more number of coordinates, then the system will randomly select the required number from the coordinates you marked and fire shots at them.
 
