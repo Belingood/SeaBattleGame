@@ -10,11 +10,11 @@
 
 The game is a classic naval battle from a school notebook :)
 There are two options for placing ships to choose from - self-placement and automatic. Selecting the placement of ships manually triggers check functions that check the dimensions and the number of placed ships. Another function checks if there are intersections of ships and if they are placed close to each other (there is no required distance). If an incorrect placement is detected, problem areas are highlighted in color.
-![SeaBattleGame](/static/img_readme/mark-intersection.jpg)
+![SeaBattleGame](/static/img_readme/inters.jpg)
 
 The most difficult task turned out to be writing a function for automatic placement of ships, so that the conditions for the correct size, number and required spacing of ships were met. As a result, the function completely randomly selects the orientation of each ship (horizontal or vertical) and its location on the field (at sea :)), while all the above requirements are met.
 > Below are the four generated fields with ships. Each of them is unique and meets all the conditions.
-![SeaBattleGame](/static/img_readme/random.jpg)
+![SeaBattleGame](/static/img_readme/rand.jpg)
 
 ### Game process
 
