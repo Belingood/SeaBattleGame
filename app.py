@@ -196,12 +196,15 @@ def review():
     form = ReviewForm()
     if form.validate_on_submit():
         txt = form.review.data
-        dt = datetime.now()
+        dt = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
         # Write a review to file
         with open('reviews.txt', 'a', encoding='utf-8') as f:
             print(f'Date: {dt}\nName: {name_frm}\nReview: {txt}\n', file=f)
+        with open('reviews.txt', 'r', encoding='utf-8') as fr:
+            txt_check = txt in fr.read()
         # The message of write success
-        flash({'eng': 'Message sent successfully', 'rus': 'Сообщение успешно отправлено'}[language])
+        if txt_check:
+            flash({'eng': 'Message sent successfully', 'rus': 'Сообщение успешно отправлено'}[language])
 
     return render_template('review.html',
                            form=form,
