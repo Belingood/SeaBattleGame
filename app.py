@@ -168,13 +168,13 @@ def game():
     if not live_use and live_rival:
         win_color = 'red'
         button_display = 'none'
-        flash({'eng': 'You lose!', 'rus': 'Вы проиграли!'}[language])
+        flash({'eng': '🏊 You lose!', 'rus': '🏊 Вы проиграли!'}[language])
     elif not live_rival and live_use:
         button_display = 'none'
-        flash({'eng': 'You win!', 'rus': 'Вы выиграли!'}[language])
+        flash({'eng': '🏆 You win!', 'rus': '🏆 Вы выиграли!'}[language])
     elif not live_rival and not live_use:
         button_display = 'none'
-        flash({'eng': 'Draw!', 'rus': 'Ничия!'}[language])
+        flash({'eng': '🤷 Draw!', 'rus': '🤷 Ничия!'}[language])
 
     return render_template('game.html',
                            rival_sea_game=rival_sea_game,
